@@ -1,149 +1,218 @@
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   ArrowUpRight,
   Mail,
+  Phone,
   MapPin,
-  Send,
 } from "lucide-react";
 
 import "../styles/contact.css";
 
-gsap.registerPlugin(ScrollTrigger);
-
-function Contact() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".contact-reveal", {
-        y: 60,
-        opacity: 0,
-        duration: 0.9,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
+export default function Contact() {
   return (
-    <section
-      ref={sectionRef}
-      id="contact"
-      className="contact-section"
-    >
+    <section id="contact" className="contact-section">
+
       <div className="contact-container">
 
-        {/* TOP */}
-        <div className="contact-label contact-reveal">
-          <span>05</span>
-          <i></i>
-          GET IN TOUCH
+        {/* HEADER */}
+
+        <div className="contact-header">
+
+          <div className="section-number">
+            05 <span>—</span> LET'S CONNECT
+          </div>
+
+          <h2>
+            LET'S MAKE
+            <br />
+            SOMETHING
+            <span> GREAT.</span>
+          </h2>
+
+          <p>
+            Have an idea, project or opportunity?
+            Let's turn it into something beautiful.
+          </p>
+
         </div>
 
-        {/* MAIN */}
-        <div className="contact-main">
 
-          <div className="contact-heading contact-reveal">
+        {/* CONTACT AREA */}
 
-            <h2>
-              LET'S BUILD
-              <span> SOMETHING.</span>
-            </h2>
+        <div className="contact-grid">
 
-            <p>
-              Have an idea, project or opportunity?
-              Let's turn it into something meaningful.
-            </p>
+          {/* LEFT */}
 
-            <a
-              href="mailto:hello@hussna.dev"
-              className="contact-email"
-            >
-              <Mail size={17} />
-              hello@hussna.dev
-              <ArrowUpRight size={16} />
-            </a>
+          <div className="contact-info">
+
+            <div className="contact-intro">
+              <span>GET IN TOUCH</span>
+
+              <h3>
+                Let's talk about
+                <br />
+                your next project.
+              </h3>
+            </div>
+
+
+            <div className="contact-items">
+
+              <a href="mailto:your@email.com" className="contact-item">
+
+                <div className="contact-icon">
+                  <Mail size={18} />
+                </div>
+
+                <div>
+                  <small>EMAIL</small>
+                  <strong>your@email.com</strong>
+                </div>
+
+              </a>
+
+
+              <a href="tel:+920000000000" className="contact-item">
+
+                <div className="contact-icon">
+                  <Phone size={18} />
+                </div>
+
+                <div>
+                  <small>PHONE</small>
+                  <strong>+92 000 0000000</strong>
+                </div>
+
+              </a>
+
+
+              <div className="contact-item">
+
+                <div className="contact-icon">
+                  <MapPin size={18} />
+                </div>
+
+                <div>
+                  <small>LOCATION</small>
+                  <strong>Pakistan</strong>
+                </div>
+
+              </div>
+
+            </div>
 
           </div>
 
-          {/* FORM */}
-          <form className="contact-form contact-reveal">
+
+          {/* RIGHT FORM */}
+
+          <form className="contact-form">
 
             <div className="form-row">
 
               <div className="form-group">
-                <label>YOUR NAME</label>
+
+                <label>
+                  YOUR NAME
+                </label>
 
                 <input
                   type="text"
-                  placeholder="John Doe"
+                  placeholder="Enter your name"
                 />
+
               </div>
 
+
               <div className="form-group">
-                <label>YOUR EMAIL</label>
+
+                <label>
+                  YOUR EMAIL
+                </label>
 
                 <input
                   type="email"
-                  placeholder="john@example.com"
+                  placeholder="Enter your email"
                 />
+
               </div>
 
             </div>
 
+
             <div className="form-group">
-              <label>SUBJECT</label>
+
+              <label>
+                SUBJECT
+              </label>
 
               <input
                 type="text"
-                placeholder="Let's work together"
+                placeholder="What is this about?"
               />
+
             </div>
+
 
             <div className="form-group">
-              <label>MESSAGE</label>
+
+              <label>
+                MESSAGE
+              </label>
 
               <textarea
-                rows="5"
+                rows="6"
                 placeholder="Tell me about your project..."
               ></textarea>
+
             </div>
 
-            <button type="submit" className="contact-submit">
+
+            <button type="submit">
+
               SEND MESSAGE
-              <Send size={15} />
+
+              <ArrowUpRight size={17} />
+
             </button>
 
           </form>
 
         </div>
 
-        {/* BOTTOM INFO */}
-        <div className="contact-bottom contact-reveal">
 
-          <div className="contact-info">
-            <MapPin size={16} />
-            <span>FAISALABAD, PAKISTAN</span>
-          </div>
+        {/* BIG CTA */}
 
-          <div className="contact-availability">
-            <span className="availability-dot"></span>
-            AVAILABLE FOR PROJECTS
+        <div className="contact-cta">
+
+          <div className="cta-glow"></div>
+
+          <div className="cta-content">
+
+            <span>
+              AVAILABLE FOR FREELANCE
+            </span>
+
+            <h3>
+              HAVE A PROJECT
+              <br />
+              IN MIND?
+            </h3>
+
+            <a href="mailto:your@email.com">
+              START A CONVERSATION
+              <ArrowUpRight size={18} />
+            </a>
+
           </div>
 
         </div>
 
-      </div>
+
+     
+         
+</div>
+    
+
     </section>
   );
 }
-
-export default Contact;

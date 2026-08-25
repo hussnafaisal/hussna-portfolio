@@ -8,32 +8,89 @@ const navItems = [
   { label: "ABOUT", id: "about" },
   { label: "SKILLS", id: "skills" },
   { label: "PROJECTS", id: "projects" },
-  { label: "EXPERIENCE", id: "experience" },
+  { label: "CONTACT", id: "contact" },
 ];
 
 function Navbar() {
   const [darkMode, setDarkMode] = useState(true);
+  const [activeSection, setActiveSection] = useState("home");
+
+  /* =====================================================
+     THEME
+  ===================================================== */
 
   useEffect(() => {
-    document.body.classList.toggle("light-theme", !darkMode);
+    document.documentElement.setAttribute(
+      "data-theme",
+      darkMode ? "dark" : "light"
+    );
   }, [darkMode]);
+
+
+  /* =====================================================
+     ACTIVE SECTION ON SCROLL
+  ===================================================== */
+
+  useEffect(() => {
+    const sections = navItems
+      .map((item) => document.getElementById(item.id))
+      .filter(Boolean);
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSections = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) =>
+              b.intersectionRatio - a.intersectionRatio
+          );
+
+        if (visibleSections.length > 0) {
+          setActiveSection(visibleSections[0].target.id);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "-20% 0px -55% 0px",
+        threshold: [0.1, 0.25, 0.5, 0.75],
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+
+  /* =====================================================
+     SCROLL TO SECTION
+  ===================================================== */
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
 
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    if (!element) return;
+
+    setActiveSection(id);
+
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
+
 
   return (
     <header className="navbar">
+
       <div className="navbar-inner">
 
-        {/* Logo */}
+        {/* =================================================
+            LOGO
+        ================================================= */}
+
         <button
           className="logo"
           onClick={() => scrollToSection("home")}
@@ -42,28 +99,55 @@ function Navbar() {
           HF<span>.</span>
         </button>
 
-        {/* Navigation */}
-        <nav className="nav-links">
+
+        {/* =================================================
+            NAVIGATION
+        ================================================= */}
+
+        <nav
+          className="nav-links"
+          aria-label="Primary navigation"
+        >
           {navItems.map((item) => (
             <button
               key={item.id}
+              type="button"
               className={`nav-link ${
-                item.id === "home" ? "active" : ""
+                activeSection === item.id
+                  ? "active"
+                  : ""
               }`}
-              onClick={() => scrollToSection(item.id)}
+              onClick={() =>
+                scrollToSection(item.id)
+              }
             >
-              {item.label}
+              <span className="nav-link-text">
+                {item.label}
+              </span>
             </button>
           ))}
         </nav>
 
-        {/* Right side */}
+
+        {/* =================================================
+            ACTIONS
+        ================================================= */}
+
         <div className="nav-actions">
 
+          {/* Theme */}
           <button
+            type="button"
             className="theme-button"
-            onClick={() => setDarkMode((prev) => !prev)}
-            aria-label="Toggle theme"
+            onClick={() =>
+              setDarkMode((prev) => !prev)
+            }
+            aria-label={
+              darkMode
+                ? "Switch to light theme"
+                : "Switch to dark theme"
+            }
+            aria-pressed={!darkMode}
           >
             {darkMode ? (
               <Sun size={16} />
@@ -72,16 +156,24 @@ function Navbar() {
             )}
           </button>
 
+
+          {/* Let's Talk */}
           <button
+            type="button"
             className="talk-button"
-            onClick={() => scrollToSection("contact")}
+            onClick={() =>
+              scrollToSection("contact")
+            }
           >
-            LET'S TALK
+            <span>LET'S TALK</span>
+
             <ArrowUpRight size={15} />
           </button>
 
         </div>
+
       </div>
+
     </header>
   );
 }

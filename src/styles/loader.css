@@ -1,0 +1,473 @@
+/* =========================================
+   PORTFOLIO INTRO LOADER
+   Completely independent overlay
+========================================= */
+
+.portfolio-loader {
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+
+  z-index: 999999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #020611;
+
+  color: #ffffff;
+
+  opacity: 1;
+
+  transition:
+    opacity 0.9s cubic-bezier(0.77, 0, 0.18, 1),
+    transform 0.9s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+
+/* =========================================
+   EXIT
+========================================= */
+
+.portfolio-loader.loader-hide {
+  opacity: 0;
+  transform: translateY(-100%);
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   CENTER
+========================================= */
+
+.loader-center {
+  width: min(700px, 86vw);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+
+/* =========================================
+   MONOGRAM
+========================================= */
+
+.loader-monogram {
+  position: relative;
+
+  width: 92px;
+  height: 92px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 32px;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  border-radius: 24px;
+
+  overflow: hidden;
+
+  animation:
+    monogramReveal 1.1s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    forwards;
+}
+
+
+/* subtle moving border */
+
+.loader-monogram::before {
+  content: "";
+
+  position: absolute;
+  inset: -1px;
+
+  background: linear-gradient(
+    135deg,
+    transparent 20%,
+    rgba(0, 217, 255, 0.8),
+    rgba(124, 58, 237, 0.8),
+    transparent 80%
+  );
+
+  opacity: 0;
+
+  animation:
+    borderReveal 1.4s
+    ease
+    0.3s
+    forwards;
+}
+
+
+/* inner layer */
+
+.loader-monogram::after {
+  content: "";
+
+  position: absolute;
+  inset: 1px;
+
+  border-radius: 23px;
+
+  background: #020611;
+}
+
+
+/* letters */
+
+.loader-monogram span {
+  position: relative;
+  z-index: 2;
+
+  font-size: 27px;
+  font-weight: 700;
+
+  letter-spacing: -4px;
+
+  opacity: 0;
+
+  background: linear-gradient(
+    135deg,
+    #ffffff,
+    #00d9ff,
+    #7c3aed
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+}
+
+.loader-monogram span:first-child {
+  animation:
+    letterReveal 0.8s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    0.25s
+    forwards;
+}
+
+.loader-monogram span:last-child {
+  animation:
+    letterReveal 0.8s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    0.38s
+    forwards;
+}
+
+
+/* =========================================
+   NAME
+========================================= */
+
+.loader-name {
+  overflow: hidden;
+
+  font-size: clamp(
+    2rem,
+    5vw,
+    4.2rem
+  );
+
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+
+  white-space: nowrap;
+
+  opacity: 0;
+
+  transform: translateY(25px);
+
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #ffffff 30%,
+    #00d9ff 55%,
+    #7c3aed 80%,
+    #ffffff
+  );
+
+  background-size: 200% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+
+  animation:
+    nameReveal 1s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    0.75s
+    forwards;
+}
+
+
+/* =========================================
+   LINE
+========================================= */
+
+.loader-line {
+  width: min(420px, 65vw);
+
+  height: 1px;
+
+  margin-top: 22px;
+
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.12);
+}
+
+
+.loader-line span {
+  display: block;
+
+  width: 0%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    #00d9ff,
+    #168cff,
+    #7c3aed
+  );
+
+  box-shadow:
+    0 0 12px rgba(0, 217, 255, 0.6);
+
+  animation:
+    lineReveal 1.2s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    1.25s
+    forwards;
+}
+
+
+/* =========================================
+   ROLE
+========================================= */
+
+.loader-role {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  margin-top: 18px;
+
+  font-size: 0.65rem;
+
+  font-weight: 500;
+
+  letter-spacing: 0.22em;
+
+  color: #64748b;
+
+  opacity: 0;
+
+  transform: translateY(10px);
+
+  animation:
+    roleReveal 0.9s
+    ease
+    1.55s
+    forwards;
+}
+
+.loader-role b {
+  color: #00d9ff;
+
+  font-weight: 400;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes monogramReveal {
+  0% {
+    opacity: 0;
+
+    transform:
+      scale(0.65)
+      rotate(-8deg);
+
+    filter: blur(12px);
+  }
+
+  70% {
+    transform:
+      scale(1.05)
+      rotate(1deg);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      scale(1)
+      rotate(0);
+
+    filter: blur(0);
+  }
+}
+
+
+@keyframes borderReveal {
+  0% {
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(360deg);
+  }
+}
+
+
+@keyframes letterReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+
+@keyframes nameReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+    letter-spacing: 0.3em;
+    filter: blur(8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 0.16em;
+    filter: blur(0);
+  }
+}
+
+
+@keyframes lineReveal {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+
+@keyframes roleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .loader-monogram {
+    width: 76px;
+    height: 76px;
+
+    border-radius: 20px;
+
+    margin-bottom: 25px;
+  }
+
+  .loader-monogram::after {
+    border-radius: 19px;
+  }
+
+  .loader-monogram span {
+    font-size: 23px;
+  }
+
+  .loader-name {
+    font-size: 1.55rem;
+
+    letter-spacing: 0.1em;
+  }
+
+  .loader-role {
+    flex-wrap: wrap;
+
+    font-size: 0.5rem;
+
+    letter-spacing: 0.13em;
+
+    gap: 8px;
+  }
+
+  .loader-line {
+    width: 65vw;
+  }
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .portfolio-loader,
+  .loader-monogram,
+  .loader-monogram span,
+  .loader-name,
+  .loader-line span,
+  .loader-role {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .loader-monogram,
+  .loader-name,
+  .loader-role {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .loader-line span {
+    width: 100%;
+  }
+}

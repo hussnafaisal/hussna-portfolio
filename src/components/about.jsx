@@ -1,145 +1,91 @@
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-import { ArrowRight, Briefcase, Code2, Sparkles } from "lucide-react";
-
+import { ArrowRight, Sparkles, Code2, Palette, Layers3 } from "lucide-react";
 import "../styles/about.css";
 
-function About() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".about-reveal", {
-        y: 60,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        },
-      });
-
-      gsap.to(".about-orb", {
-        y: -20,
-        duration: 3,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
+export default function About() {
   return (
-    <section
-      ref={sectionRef}
-      id="about"
-      className="about-section"
-    >
+    <section id="about" className="about-section">
+
       <div className="about-container">
 
         {/* LEFT VISUAL */}
-        <div className="about-visual about-reveal">
 
-          <div className="about-grid" />
+        <div className="about-visual">
 
-          <div className="about-orb">
-            <div className="about-orb-inner">
-              <Code2 size={54} />
-            </div>
+          <div className="about-orbit orbit-a" />
+          <div className="about-orbit orbit-b" />
+
+          <div className="about-core">
+            <Code2 size={46} />
+            <span>CREATIVE<br />CODE</span>
           </div>
 
-          <div className="about-floating-card card-top">
-            <Code2 size={17} />
-            <span>FRONTEND</span>
+          <div className="about-floating about-code">
+            &lt;/&gt;
           </div>
 
-          <div className="about-floating-card card-bottom">
-            <Sparkles size={17} />
-            <span>CREATIVE UI</span>
+          <div className="about-floating about-design">
+            <Palette size={19} />
           </div>
 
-          <div className="about-ring ring-a" />
-          <div className="about-ring ring-b" />
+          <div className="about-floating about-layers">
+            <Layers3 size={18} />
+          </div>
 
         </div>
 
+
         {/* RIGHT CONTENT */}
+
         <div className="about-content">
 
-          <div className="section-label about-reveal">
-            <span>02</span>
-            <i />
-            ABOUT ME
+          <div className="section-number">
+            02 <span>—</span> ABOUT ME
           </div>
 
-          <h2 className="about-title about-reveal">
-            I BUILD DIGITAL
-            <span> EXPERIENCES</span>
+          <h2>
+            I BUILD
             <br />
-            THAT <strong>FEEL</strong>
+            <span>DIGITAL</span>
             <br />
-            DIFFERENT.
+            EXPERIENCES.
           </h2>
 
-          <p className="about-description about-reveal">
-            I'm Hussna Faisal, a frontend developer and
-            UI/UX designer who enjoys turning ideas into
-            meaningful digital experiences.
+          <p className="about-lead">
+            I'm Hussna Faisal, a Frontend Developer,
+            UI/UX Designer and Graphic Designer who
+            loves transforming ideas into beautiful,
+            interactive digital experiences.
           </p>
 
-          <p className="about-description secondary about-reveal">
-            I combine clean development, thoughtful
-            interface design and creative visual direction
-            to build websites that don't just work —
-            they leave an impression.
+          <p className="about-text">
+            I combine creativity with technology to create
+            interfaces that don't just look good — they feel
+            meaningful, intuitive and memorable.
           </p>
 
-          <button className="about-button about-reveal">
+          <a href="#contact" className="about-button">
             MORE ABOUT ME
             <ArrowRight size={16} />
-          </button>
+          </a>
+
 
           {/* STATS */}
-          <div className="about-stats about-reveal">
+
+          <div className="about-stats">
 
             <div className="about-stat">
-              <div className="stat-icon">
-                <Briefcase size={17} />
-              </div>
-
-              <div>
-                <strong>2+</strong>
-                <span>Years Experience</span>
-              </div>
+              <strong>2+</strong>
+              <span>YEARS EXPERIENCE</span>
             </div>
 
             <div className="about-stat">
-              <div className="stat-icon">
-                <Code2 size={17} />
-              </div>
-
-              <div>
-                <strong>30+</strong>
-                <span>Projects Completed</span>
-              </div>
+              <strong>30+</strong>
+              <span>PROJECTS COMPLETED</span>
             </div>
 
             <div className="about-stat">
-              <div className="stat-icon">
-                <Sparkles size={17} />
-              </div>
-
-              <div>
-                <strong>20+</strong>
-                <span>Happy Clients</span>
-              </div>
+              <strong>20+</strong>
+              <span>HAPPY CLIENTS</span>
             </div>
 
           </div>
@@ -147,8 +93,7 @@ function About() {
         </div>
 
       </div>
+
     </section>
   );
 }
-
-export default About;

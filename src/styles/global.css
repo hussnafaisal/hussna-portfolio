@@ -1,4 +1,68 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg: #020611;
+  --bg-secondary: #071120;
+  --surface: #071120;
+  --surface-soft: #0b1628;
+
+  --text: #f5f7ff;
+  --heading: #ffffff;
+  --muted: #94a3b8;
+
+  --border: rgba(148, 163, 184, 0.14);
+  --border-strong: rgba(148, 163, 184, 0.24);
+
+  --cyan: #00d9ff;
+  --blue: #168cff;
+  --purple: #7c3aed;
+  --pink: #d946ef;
+
+  --primary: var(--cyan);
+  --secondary: var(--purple);
+  --text-muted: var(--muted);
+  --card: rgba(7, 17, 32, 0.72);
+  --card-border: var(--border);
+  --glow: rgba(0, 217, 255, 0.18);
+
+  --glass: rgba(7, 17, 32, 0.65);
+  --glass-strong: rgba(7, 17, 32, 0.82);
+  --shadow: rgba(0, 0, 0, 0.18);
+  --on-accent: #ffffff;
+  --selection-text: #001018;
+}
+
+[data-theme="light"] {
+  --bg: #f7f9ff;
+  --bg-secondary: #eef4ff;
+  --surface: #ffffff;
+  --surface-soft: #eef4ff;
+
+  --text: #111827;
+  --heading: #0f172a;
+  --muted: #64748b;
+
+  --border: rgba(15, 23, 42, 0.10);
+  --border-strong: rgba(15, 23, 42, 0.16);
+
+  --cyan: #00a9d6;
+  --blue: #168cff;
+  --purple: #6d35d9;
+  --pink: #d946ef;
+
+  --primary: var(--cyan);
+  --secondary: var(--purple);
+  --text-muted: var(--muted);
+  --card: rgba(255, 255, 255, 0.76);
+  --card-border: var(--border);
+  --glow: rgba(22, 140, 255, 0.12);
+
+  --glass: rgba(255, 255, 255, 0.76);
+  --glass-strong: rgba(255, 255, 255, 0.92);
+  --shadow: rgba(37, 99, 235, 0.08);
+  --on-accent: #ffffff;
+  --selection-text: #ffffff;
+}
 
 * {
   margin: 0;
@@ -8,13 +72,23 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--bg);
 }
 
 body {
+  min-width: 320px;
   font-family: "DM Sans", sans-serif;
-  background: #02030a;
-  color: #ffffff;
+  background: var(--bg);
+  color: var(--text);
   overflow-x: hidden;
+  transition: background 0.45s ease, color 0.45s ease;
+}
+
+body,
+button,
+input,
+textarea {
+  font-family: inherit;
 }
 
 button,
@@ -23,7 +97,7 @@ a {
 }
 
 button {
-  border: none;
+  border: 0;
   cursor: pointer;
 }
 
@@ -32,28 +106,44 @@ a {
   text-decoration: none;
 }
 
+input,
+textarea {
+  color-scheme: dark;
+}
+
+[data-theme="light"] input,
+[data-theme="light"] textarea {
+  color-scheme: light;
+}
+
+#root {
+  min-height: 100vh;
+}
+
 .app {
   min-height: 100vh;
   background:
-    radial-gradient(
-      circle at 70% 20%,
-      rgba(32, 89, 255, 0.08),
-      transparent 30%
-    ),
-    #02030a;
+    radial-gradient(circle at 75% 10%, var(--glow), transparent 28%),
+    var(--bg);
+  color: var(--text);
+  transition: background 0.45s ease, color 0.45s ease;
 }
 
-body.light-theme {
-  background: #f4f0ff;
-  color: #15111f;
+::selection {
+  background: var(--cyan);
+  color: var(--selection-text);
 }
 
-body.light-theme .app {
-  background:
-    radial-gradient(
-      circle at 75% 20%,
-      rgba(157, 91, 255, 0.15),
-      transparent 35%
-    ),
-    #f4f0ff;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -1,245 +1,189 @@
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Code2,
   Palette,
-  Layers3,
+  Atom,
+  FileCode2,
+  Wind,
   Database,
   GitBranch,
-  Smartphone,
+  PenTool,
+  icons,
 } from "lucide-react";
 
 import "../styles/skills.css";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const skills = [
   {
-    name: "HTML",
-    category: "FRONTEND",
-    level: "95%",
+    name: "HTML5",
+    icon: FileCode2,
+    className: "skill-html",
   },
   {
-    name: "CSS",
-    category: "FRONTEND",
-    level: "92%",
+    name: "CSS3",
+    icon: Code2,
+    className: "skill-css",
   },
   {
     name: "JavaScript",
-    category: "LANGUAGE",
-    level: "88%",
+    icon: Code2,
+    className: "skill-js",
   },
   {
     name: "React",
-    category: "FRONTEND",
-    level: "90%",
+    icon: Atom,
+    className: "skill-react",
   },
   {
-    name: "Tailwind",
-    category: "STYLING",
-    level: "86%",
+    name: "Bootstrap",
+    icon: Wind,
+    className: "skill-tailwind",
   },
   {
     name: "Figma",
-    category: "DESIGN",
-    level: "91%",
+    icon: PenTool,
+    className: "skill-figma",
   },
   {
     name: "Git",
-    category: "TOOLS",
-    level: "82%",
+    icon: GitBranch,
+    className: "skill-git",
   },
   {
     name: "MySQL",
-    category: "DATABASE",
-    level: "78%",
+    icon: Database,
+    className: "skill-mysql",
   },
 ];
 
-function Skills() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".skills-reveal", {
-        y: 60,
-        opacity: 0,
-        duration: 0.9,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        },
-      });
-
-      gsap.from(".skill-progress-fill", {
-        scaleX: 0,
-        transformOrigin: "left",
-        duration: 1.2,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 65%",
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
+export default function Skills() {
   return (
-    <section
-      ref={sectionRef}
-      id="skills"
-      className="skills-section"
-    >
+    <section id="skills" className="skills-section">
+
       <div className="skills-container">
 
-        {/* HEADER */}
-        <div className="skills-header skills-reveal">
+        {/* =========================
+            SECTION HEADER
+        ========================= */}
 
-          <div className="section-label">
-            <span>03</span>
-            <i />
-            MY EXPERTISE
+        <div className="skills-header">
+
+          <div className="section-number">
+            03 <span>—</span> MY EXPERTISE
           </div>
 
-          <h2 className="skills-title">
-            TOOLS I USE TO
-            <span> BUILD.</span>
+          <h2>
+            MY <span>SKILLS</span>
           </h2>
 
-          <p className="skills-intro">
-            A combination of development, design and
-            problem-solving skills that I use to create
-            modern digital products.
+          <p>
+            I combine creativity with technology to create
+            exceptional digital experiences.
           </p>
 
         </div>
 
-        {/* SKILL AREA */}
-        <div className="skills-layout">
 
-          {/* LEFT */}
-          <div className="skills-side skills-reveal">
+        {/* =========================
+            3D SKILLS SCENE
+        ========================= */}
 
-            <div className="skill-feature">
-              <div className="feature-icon">
-                <Code2 size={21} />
-              </div>
+        <div className="skills-scene">
 
-              <div>
-                <h3>Development</h3>
-                <p>
-                  Building responsive and interactive
-                  interfaces with modern technologies.
-                </p>
-              </div>
-            </div>
+          {/* MAIN GLOW */}
 
-            <div className="skill-feature">
-              <div className="feature-icon purple">
-                <Palette size={21} />
-              </div>
+          <div className="skills-glow"></div>
 
-              <div>
-                <h3>UI / UX Design</h3>
-                <p>
-                  Designing clean interfaces with focus
-                  on usability and visual hierarchy.
-                </p>
-              </div>
-            </div>
 
-            <div className="skill-feature">
-              <div className="feature-icon blue">
-                <Layers3 size={21} />
-              </div>
+          {/* ORBITS */}
 
-              <div>
-                <h3>Creative Development</h3>
-                <p>
-                  Combining motion, interaction and
-                  visual design to create experiences.
-                </p>
-              </div>
+          <div className="orbit orbit-1"></div>
+
+          <div className="orbit orbit-2"></div>
+
+          <div className="orbit orbit-3"></div>
+
+
+          {/* =========================
+              CENTER
+          ========================= */}
+
+          <div className="skill-core">
+
+            <div className="core-inner">
+
+              <Code2 size={42} />
+
+              <strong>CODE</strong>
+
+              <span>CREATE</span>
+
             </div>
 
           </div>
 
-          {/* RIGHT */}
-          <div className="skills-grid">
 
-            {skills.map((skill, index) => (
+          {/* =========================
+              SKILLS
+          ========================= */}
+
+          {skills.map((skill) => {
+
+            const Icon = skill.icon;
+
+            return (
               <div
-                className="skill-card skills-reveal"
                 key={skill.name}
+                className={`skill-node ${skill.className}`}
               >
-                <div className="skill-card-top">
 
-                  <span className="skill-number">
-                    0{index + 1}
-                  </span>
+                <div className="skill-node-icon">
 
-                  <span className="skill-category">
-                    {skill.category}
-                  </span>
+                  <Icon size={23} />
 
                 </div>
 
-                <h3>{skill.name}</h3>
-
-                <div className="skill-progress">
-                  <div
-                    className="skill-progress-fill"
-                    style={{
-                      width: skill.level,
-                    }}
-                  />
-                </div>
-
-                <span className="skill-level">
-                  {skill.level}
+                <span>
+                  {skill.name}
                 </span>
 
               </div>
-            ))}
+            );
 
-          </div>
+          })}
 
         </div>
 
-        {/* BOTTOM TECHNOLOGY STRIP */}
-        <div className="technology-strip skills-reveal">
 
-          <div className="technology-item">
-            <Smartphone size={17} />
-            RESPONSIVE
+        {/* =========================
+            SKILL CATEGORIES
+        ========================= */}
+
+        <div className="skill-categories">
+
+          <div>
+            <Code2 size={16} />
+            <span>DEVELOPMENT</span>
           </div>
 
-          <div className="technology-item">
-            <Code2 size={17} />
-            CLEAN CODE
+          <div>
+            <Palette size={16} />
+            <span>UI / UX DESIGN</span>
           </div>
 
-          <div className="technology-item">
-            <Database size={17} />
-            DATABASE
+          <div>
+            <Atom size={16} />
+            <span>CREATIVE DEVELOPMENT</span>
           </div>
 
-          <div className="technology-item">
-            <GitBranch size={17} />
-            VERSION CONTROL
+          <div>
+            <PenTool size={16} />
+            <span>VISUAL DESIGN</span>
           </div>
 
         </div>
 
       </div>
+
     </section>
   );
 }
-
-export default Skills;

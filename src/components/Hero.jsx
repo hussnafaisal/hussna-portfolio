@@ -1,28 +1,12 @@
-import { useEffect, useState } from "react";
-import { ArrowUpRight, Moon, Sun } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
+import "../styles/hero.css";
 
-import "../styles/navbar.css";
-
-const navItems = [
-  { label: "HOME", id: "home" },
-  { label: "ABOUT", id: "about" },
-  { label: "SKILLS", id: "skills" },
-  { label: "PROJECTS", id: "projects" },
-  { label: "EXPERIENCE", id: "experience" },
-];
-
-function Navbar() {
-  const [darkMode, setDarkMode] = useState(true);
-
-  useEffect(() => {
-    document.body.classList.toggle("light-theme", !darkMode);
-  }, [darkMode]);
-
+function Hero() {
   const scrollToSection = (id) => {
-    const element = document.getElementById(id);
+    const section = document.getElementById(id);
 
-    if (element) {
-      element.scrollIntoView({
+    if (section) {
+      section.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
@@ -30,60 +14,161 @@ function Navbar() {
   };
 
   return (
-    <header className="navbar">
-      <div className="navbar-inner">
+    <section className="hero-section" id="home">
+      {/* =====================================================
+          BACKGROUND
+      ===================================================== */}
 
-        {/* Logo */}
-        <button
-          className="logo"
-          onClick={() => scrollToSection("home")}
-          aria-label="Go to home"
-        >
-          HF<span>.</span>
-        </button>
+      <div className="hero-background" aria-hidden="true">
+        <div className="hero-grid" />
+        <div className="hero-glow hero-glow-one" />
+        <div className="hero-glow hero-glow-two" />
+        <div className="hero-vignette" />
+      </div>
 
-        {/* Navigation */}
-        <nav className="nav-links">
-          {navItems.map((item) => (
+      {/* =====================================================
+          MAIN HERO
+      ===================================================== */}
+
+      <div className="hero-container">
+        {/* =================================================
+            LEFT CONTENT
+        ================================================= */}
+
+        <div className="hero-content">
+          <div className="hero-eyebrow">
+            <span className="hero-status" />
+            <span>AVAILABLE FOR CREATIVE WORK</span>
+          </div>
+
+          <h1 className="hero-title">
+            <span className="hero-title-line">HUSSNA</span>
+
+            <span className="hero-title-line hero-title-accent">
+              FAISAL<span className="hero-title-dot">.</span>
+            </span>
+          </h1>
+
+          <div className="hero-role">
+            <span>FRONTEND DEVELOPER</span>
+
+            <span className="hero-role-divider">/</span>
+
+            <span>UI / UX DESIGNER</span>
+          </div>
+
+          <p className="hero-description">
+            I build digital experiences where thoughtful design,
+            clean code and meaningful interaction come together.
+          </p>
+
+          <div className="hero-actions">
             <button
-              key={item.id}
-              className={`nav-link ${
-                item.id === "home" ? "active" : ""
-              }`}
-              onClick={() => scrollToSection(item.id)}
+              type="button"
+              className="hero-primary-button"
+              onClick={() => scrollToSection("projects")}
             >
-              {item.label}
+              <span>VIEW MY WORK</span>
+              <ArrowUpRight size={17} strokeWidth={2} />
             </button>
-          ))}
-        </nav>
 
-        {/* Right side */}
-        <div className="nav-actions">
+            <button
+              type="button"
+              className="hero-secondary-button"
+              onClick={() => scrollToSection("contact")}
+            >
+              LET'S TALK
+            </button>
+          </div>
 
-          <button
-            className="theme-button"
-            onClick={() => setDarkMode((prev) => !prev)}
-            aria-label="Toggle theme"
-          >
-            {darkMode ? (
-              <Sun size={16} />
-            ) : (
-              <Moon size={16} />
-            )}
-          </button>
+          {/* =================================================
+              SPECIALTIES
+          ================================================= */}
 
-          <button
-            className="talk-button"
-            onClick={() => scrollToSection("contact")}
-          >
-            LET'S TALK
-            <ArrowUpRight size={15} />
-          </button>
+          <div className="hero-meta">
+            <div className="hero-meta-item">
+              <span className="hero-meta-number">01</span>
+              <span className="hero-meta-text">FRONTEND</span>
+            </div>
 
+            <div className="hero-meta-item">
+              <span className="hero-meta-number">02</span>
+              <span className="hero-meta-text">UI / UX</span>
+            </div>
+
+            <div className="hero-meta-item">
+              <span className="hero-meta-number">03</span>
+              <span className="hero-meta-text">CREATIVE</span>
+            </div>
+          </div>
+        </div>
+
+        {/* =================================================
+            RIGHT PHOTO
+        ================================================= */}
+
+        <div className="hero-visual">
+          <div className="hero-photo-wrapper">
+            <div
+              className="hero-photo-frame"
+              aria-hidden="true"
+            />
+
+            <div className="hero-photo">
+              <img
+                src="/images/hussna.png"
+                alt="Hussna Faisal"
+              />
+
+              <div className="hero-photo-overlay" />
+            </div>
+
+            <div className="hero-photo-label">
+              <span className="hero-photo-dot" />
+              <span>HUSSNA FAISAL</span>
+            </div>
+{/* 
+            <div className="hero-photo-number">
+              01
+            </div> */}
+
+            <div className="hero-photo-corner hero-photo-corner-top" />
+            <div className="hero-photo-corner hero-photo-corner-bottom" />
+          </div>
+
+          {/* Small professional info card */}
+
+          <div className="hero-floating-card">
+            <span className="hero-floating-line" />
+
+            <div>
+              <small>FOCUS</small>
+              <strong>DESIGN × CODE</strong>
+            </div>
+          </div>
+
+          <div className="hero-location">
+            <span className="hero-location-dot" />
+            <span>PAKISTAN</span>
+          </div>
         </div>
       </div>
-    </header>
+
+      {/* =====================================================
+          SCROLL INDICATOR
+      ===================================================== */}
+
+      <button
+        type="button"
+        className="hero-scroll"
+        onClick={() => scrollToSection("about")}
+        aria-label="Scroll to about section"
+      >
+        <span>SCROLL TO EXPLORE</span>
+        <ArrowDown size={15} strokeWidth={1.8} />
+      </button>
+    </section>
   );
 }
 
-export default Navbar;
+export default Hero;
