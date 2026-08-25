@@ -57,7 +57,7 @@ export default function Contact() {
 
             <div className="contact-items">
 
-              <a href="mailto:your@email.com" className="contact-item">
+              <a href="mailto:hussnafaisl01@email.com" className="contact-item">
 
                 <div className="contact-icon">
                   <Mail size={18} />
@@ -65,13 +65,13 @@ export default function Contact() {
 
                 <div>
                   <small>EMAIL</small>
-                  <strong>your@email.com</strong>
+                  <strong>hussnafaisal01@email.com</strong>
                 </div>
 
               </a>
 
 
-              <a href="tel:+920000000000" className="contact-item">
+              <a href="tel:+923080228992" className="contact-item">
 
                 <div className="contact-icon">
                   <Phone size={18} />
@@ -79,7 +79,7 @@ export default function Contact() {
 
                 <div>
                   <small>PHONE</small>
-                  <strong>+92 000 0000000</strong>
+                  <strong>+92 308 0228992</strong>
                 </div>
 
               </a>
@@ -93,7 +93,7 @@ export default function Contact() {
 
                 <div>
                   <small>LOCATION</small>
-                  <strong>Pakistan</strong>
+                  <strong>Faisalabad, Punjab ,Pakistan</strong>
                 </div>
 
               </div>
@@ -198,7 +198,7 @@ export default function Contact() {
               IN MIND?
             </h3>
 
-            <a href="mailto:your@email.com">
+            <a href="mailto:hussnafaisal01@email.com">
               START A CONVERSATION
               <ArrowUpRight size={18} />
             </a>
