@@ -45,7 +45,7 @@ function Hero() {
             <span className="hero-title-line">HUSSNA</span>
 
             <span className="hero-title-line hero-title-accent">
-              FAISAL<span className="hero-title-dot">.</span>
+              FAISAL<span className="hero-title-dot"></span>
             </span>
           </h1>
 
