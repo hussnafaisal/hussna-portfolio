@@ -1460,3 +1460,104 @@
   }
 
 }
+
+[data-theme="light"] .projects-heading-wrap h2{
+  color: #010101;
+}
+
+[data-theme="light"] .project-big-number{
+  color:#d6e9fcf6;
+}
+
+[data-theme="light"] .project-top .project-number{
+  color: #000000;
+}
+ 
+
+[data-theme="light"] .project-top .project-category{
+  color:#168cff;
+}
+ 
+
+[data-theme="light"] .project-top .project-type{
+  color:#168cff;
+}
+ 
+
+[data-theme="light"] .project-visual{
+  background-color:#168aff33;
+}
+[data-theme="light"] .visual-grid{
+  background-color:#168aff33;
+}
+[data-theme="light"] .visual-label{
+  background-color:#168aff33;
+}
+[data-theme="light"] .visual-light{
+  background-color:#168aff33;
+}
+ 
+[data-theme="light"] .browser-window{
+  background-color:#fff;
+}
+
+[data-theme="light"] .browser-address{
+  background-color:#fafafa;
+}
+
+[data-theme="light"] .browser-body{
+  background-color:#168aff33;
+}
+
+[data-theme="light"] .browser-dots span{
+  background-color:#168cff;
+}
+
+[data-theme="light"] .mock-card{
+  background-color:#ffffff;
+}
+[data-theme="light"] .mock-heading span{
+  background-color:#8745fb8c;
+}
+
+[data-theme="light"] .visual-scan{
+  background:   linear-gradient(
+      90deg,
+      #00d9ff,
+      #168cff,
+      #7c3aed
+    );
+}
+
+[data-theme="light"] .project-content .project-index{
+ color:#000000;
+}
+[data-theme="light"] .project-content h3{
+ color:#7c3aed;
+}
+
+[data-theme="light"] .project-content p{
+ color:#2c2c2c;
+}
+
+[data-theme="light"] .project-tech span{
+
+     transform:
+    translateY(-5px);
+
+  border-color:
+    rgba(0, 217, 255, 0.35);
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.2);
+
+}
+
+
+
+
+
+
+
+
+ 
