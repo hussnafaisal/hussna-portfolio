@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   ArrowUpRight,
   Mail,
@@ -8,9 +9,54 @@ import {
 import "../styles/contact.css";
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const { name, email, subject, message } = formData;
+
+    if (!name || !email || !subject || !message) {
+      alert("Please fill in all fields before sending.");
+      return;
+    }
+
+    const whatsappMessage = `Hello Hussna,
+
+I found your portfolio and would like to discuss a project with you.
+
+Name: ${name}
+Email: ${email}
+Subject: ${subject}
+
+Message:
+${message}
+
+Thank you.`;
+
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+
+    const whatsappURL = `https://wa.me/923080228992?text=${encodedMessage}`;
+
+    window.open(whatsappURL, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <section id="contact" className="contact-section">
-
       <div className="contact-container">
 
         {/* HEADER */}
@@ -57,7 +103,12 @@ export default function Contact() {
 
             <div className="contact-items">
 
-              <a href="mailto:hussnafaisl01@email.com" className="contact-item">
+              {/* EMAIL */}
+
+              <a
+                href="mailto:hussnafaisal01@email.com"
+                className="contact-item"
+              >
 
                 <div className="contact-icon">
                   <Mail size={18} />
@@ -65,13 +116,20 @@ export default function Contact() {
 
                 <div>
                   <small>EMAIL</small>
-                  <strong>hussnafaisal01@email.com</strong>
+                  <strong>
+                    hussnafaisal01@email.com
+                  </strong>
                 </div>
 
               </a>
 
 
-              <a href="tel:+923080228992" className="contact-item">
+              {/* PHONE */}
+
+              <a
+                href="tel:+923080228992"
+                className="contact-item"
+              >
 
                 <div className="contact-icon">
                   <Phone size={18} />
@@ -79,11 +137,15 @@ export default function Contact() {
 
                 <div>
                   <small>PHONE</small>
-                  <strong>+92 308 0228992</strong>
+                  <strong>
+                    +92 308 0228992
+                  </strong>
                 </div>
 
               </a>
 
+
+              {/* LOCATION */}
 
               <div className="contact-item">
 
@@ -93,7 +155,9 @@ export default function Contact() {
 
                 <div>
                   <small>LOCATION</small>
-                  <strong>Faisalabad, Punjab ,Pakistan</strong>
+                  <strong>
+                    Faisalabad, Punjab, Pakistan
+                  </strong>
                 </div>
 
               </div>
@@ -105,9 +169,14 @@ export default function Contact() {
 
           {/* RIGHT FORM */}
 
-          <form className="contact-form">
+          <form
+            className="contact-form"
+            onSubmit={handleSubmit}
+          >
 
             <div className="form-row">
+
+              {/* NAME */}
 
               <div className="form-group">
 
@@ -117,11 +186,17 @@ export default function Contact() {
 
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   placeholder="Enter your name"
+                  autoComplete="name"
                 />
 
               </div>
 
+
+              {/* EMAIL */}
 
               <div className="form-group">
 
@@ -131,13 +206,19 @@ export default function Contact() {
 
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="Enter your email"
+                  autoComplete="email"
                 />
 
               </div>
 
             </div>
 
+
+            {/* SUBJECT */}
 
             <div className="form-group">
 
@@ -147,11 +228,16 @@ export default function Contact() {
 
               <input
                 type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
                 placeholder="What is this about?"
               />
 
             </div>
 
+
+            {/* MESSAGE */}
 
             <div className="form-group">
 
@@ -161,11 +247,16 @@ export default function Contact() {
 
               <textarea
                 rows="6"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 placeholder="Tell me about your project..."
               ></textarea>
 
             </div>
 
+
+            {/* SEND */}
 
             <button type="submit">
 
@@ -198,7 +289,11 @@ export default function Contact() {
               IN MIND?
             </h3>
 
-            <a href="mailto:hussnafaisal01@email.com">
+            <a
+              href="https://wa.me/923080228992"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               START A CONVERSATION
               <ArrowUpRight size={18} />
             </a>
@@ -207,12 +302,7 @@ export default function Contact() {
 
         </div>
 
-
-     
-         
-</div>
-    
-
+      </div>
     </section>
   );
 }
